@@ -5,7 +5,16 @@ const substract = (a, b) => add(a, b * -1);
 const mult = (a, b) => a * b;
 const divide = (a, b) => mult(a, 1 / b);
 
-console.log(add(2, 3));
-console.log(substract(5, 3));
-console.log(mult(2, 3));
-console.log(divide(6, 3));
+function operate(a, op, b) {
+  switch (op) {
+    case "+":
+      return add(a, b);
+    case "-":
+      return substract(a, b);
+    case "x":
+      return mult(a, b);
+    case "/":
+      if (b) return divide(a, b);
+      else return "Math Error";
+  }
+}
