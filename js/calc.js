@@ -18,3 +18,7 @@ function operate(a, op, b) {
       else return "Math Error";
   }
 }
+
+function drawButtons() {}
+
+console.log("el pepe");
