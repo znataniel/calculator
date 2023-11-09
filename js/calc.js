@@ -47,13 +47,18 @@ buttons.forEach((btn) => {
   // Add event listener for = button
   else if (btn.className == "btnResult") {
     btn.addEventListener("click", () => {
-      rOp = Number(
-        inputField.textContent.slice(
+      if (operation) {
+        rOp = inputField.textContent.slice(
           inputField.textContent.indexOf(operation) + 1,
-        ),
-      );
-      inputField.textContent = operate(lOp, operation, rOp);
-      lOp = +inputField.textContent;
+        );
+        if (rOp === "") inputField.textContent = "Syntax ERROR";
+        else {
+          rOp = Number(rOp);
+          inputField.textContent = operate(lOp, operation, rOp);
+          lOp = +inputField.textContent;
+          operation = rOp = null;
+        }
+      }
     });
   }
   // Add event listener for operation buttons
