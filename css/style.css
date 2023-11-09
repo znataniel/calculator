@@ -30,6 +30,7 @@ body {
 }
 
 .calcDisplay {
+  height: 10%;
   padding: 2px;
   background-color: darkseagreen;
 }
