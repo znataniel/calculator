@@ -1,8 +1,10 @@
 body {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+
+  font-family: sans-serif;
 }
 
 .calcContainer {
@@ -12,26 +14,53 @@ body {
   width: 480px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
-  border: 1px solid rebeccapurple;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 36px;
+  border-bottom-right-radius: 36px;
   padding: 64px;
   background-color: black;
 }
 
-.calcDisplay {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.brandTitle {
+  color: white;
+  font-size: 24px;
+}
 
-  background-color: lightgreen;
+.calcDisplay {
+  padding: 2px;
+  background-color: darkseagreen;
+}
+
+.calcInput {
+  margin-bottom: 24px;
+  font-size: 32px;
 }
 
 .calcResult {
+  font-size: 32px;
   text-align: end;
 }
 
+.greenDot,
+.redDot {
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+.greenDot {
+  background-color: green;
+  margin-right: 36px;
+}
+.redDot {
+  background-color: red;
+}
+
 .calcBtns {
-  flex: 1;
+  height: 60%;
   display: flex;
   flex-direction: column-reverse;
 }
@@ -39,10 +68,17 @@ body {
 .calcBtns > div {
   flex: 1;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .calcBtns > div > button {
-  flex: 1;
+  border: 0;
+  width: 3em;
+  height: 3em;
   aspect-ratio: 1/1;
-  border-radius: 90px;
+  border-radius: 50%;
+
+  font-size: 20px;
+  font-weight: 500;
 }
