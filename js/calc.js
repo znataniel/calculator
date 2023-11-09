@@ -13,7 +13,7 @@ function operate(a, op, b) {
       case "x":
         return mult(a, b);
       case "/":
-        b ? divide(a, b) : "Math ERROR";
+        return b ? divide(a, b) : "Math ERROR";
       default:
         return "Syntax ERROR";
     }
@@ -59,7 +59,7 @@ buttons.forEach((btn) => {
   // Add event listener for operation buttons
   else {
     btn.addEventListener("click", () => {
-      lOp = +inputField.textContent;
+      if (!lOp) lOp = +inputField.textContent;
       operation = btn.textContent;
       inputField.textContent += operation;
     });
