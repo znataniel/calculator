@@ -28,7 +28,7 @@ function wipe() {
 }
 
 function getResult() {
-  if (operation) {
+  if (lOp && operation) {
     rOp = inputField.textContent.slice(
       inputField.textContent.indexOf(operation) + 1,
     );
@@ -36,8 +36,7 @@ function getResult() {
     else {
       rOp = Number(rOp);
       inputField.textContent = operate(lOp, operation, rOp);
-      lOp = +inputField.textContent;
-      operation = rOp = null;
+      operation = rOp = lOp = null;
     }
   }
 }
