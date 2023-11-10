@@ -27,6 +27,29 @@ function wipe() {
   inputField.textContent = "";
 }
 
+function getResult() {
+  if (operation) {
+    rOp = inputField.textContent.slice(
+      inputField.textContent.indexOf(operation) + 1,
+    );
+    if (rOp === "") inputField.textContent = "Syntax ERROR";
+    else {
+      rOp = Number(rOp);
+      inputField.textContent = operate(lOp, operation, rOp);
+      lOp = +inputField.textContent;
+      operation = rOp = null;
+    }
+  }
+}
+
+function addOperator() {
+  if (lOp === null && !operation) {
+    lOp = +inputField.textContent;
+    operation = this.textContent;
+    inputField.textContent += operation;
+  }
+}
+
 const buttons = document.querySelectorAll(".calcBtns button");
 const inputField = document.querySelector(".calcInput");
 let lOp = null;
@@ -44,28 +67,8 @@ buttons.forEach((btn) => {
   // Add event listener for C button
   else if (btn.className == "btnClear") btn.addEventListener("click", wipe);
   // Add event listener for = button
-  else if (btn.className == "btnResult") {
-    btn.addEventListener("click", () => {
-      if (operation) {
-        rOp = inputField.textContent.slice(
-          inputField.textContent.indexOf(operation) + 1,
-        );
-        if (rOp === "") inputField.textContent = "Syntax ERROR";
-        else {
-          rOp = Number(rOp);
-          inputField.textContent = operate(lOp, operation, rOp);
-          lOp = +inputField.textContent;
-          operation = rOp = null;
-        }
-      }
-    });
-  }
+  else if (btn.className == "btnResult")
+    btn.addEventListener("click", getResult);
   // Add event listener for operation buttons
-  else {
-    btn.addEventListener("click", () => {
-      if (!lOp) lOp = +inputField.textContent;
-      operation = btn.textContent;
-      inputField.textContent += operation;
-    });
-  }
+  else btn.addEventListener("click", addOperator);
 });
