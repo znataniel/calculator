@@ -29,7 +29,6 @@ function wipe() {
 
 const buttons = document.querySelectorAll(".calcBtns button");
 const inputField = document.querySelector(".calcInput");
-// const resultField = document.querySelector(".calcResult");
 let lOp = null;
 let rOp = null;
 let operation = null;

@@ -40,11 +40,6 @@ body {
   font-size: 32px;
 }
 
-.calcResult {
-  font-size: 32px;
-  text-align: end;
-}
-
 .greenDot,
 .redDot {
   display: inline-block;
