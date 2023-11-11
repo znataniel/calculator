@@ -1,8 +1,10 @@
-const add = (a, b) => +a + +b;
-const mult = (a, b) => +a * +b;
+const add = (a, b) => a + b;
+const mult = (a, b) => a * b;
 
 function operate(a, op, b) {
   if (a !== "" && b !== "") {
+    a = +a;
+    b = +b;
     switch (op) {
       case "+":
         return add(a, b);
@@ -24,8 +26,14 @@ function wipe() {
 }
 
 function getResult() {
-  lOp = operate(lOp, op, rOp);
-  inputField.textContent = lOp;
+  res = operate(lOp, op, rOp);
+  if (isNaN(res)) {
+    inputField.textContent = res;
+    lOp = "";
+  } else {
+    lOp = res;
+    inputField.textContent = Math.floor(lOp * 10 ** 3) / 10 ** 3;
+  }
   op = rOp = "";
   returnedResult = true;
 }
