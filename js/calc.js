@@ -1,19 +1,17 @@
-const add = (a, b) => a + b;
-const substract = (a, b) => add(a, b * -1);
-const mult = (a, b) => a * b;
-const divide = (a, b) => mult(a, 1 / b);
+const add = (a, b) => +a + +b;
+const mult = (a, b) => +a * +b;
 
 function operate(a, op, b) {
-  if (a != null && b != null) {
+  if (a !== "" && b !== "") {
     switch (op) {
       case "+":
         return add(a, b);
       case "-":
-        return substract(a, b);
+        return add(a, -b);
       case "x":
         return mult(a, b);
       case "/":
-        return b ? divide(a, b) : "Math ERROR";
+        return b ? mult(a, 1 / b) : "Math ERROR";
       default:
         return "Syntax ERROR";
     }
@@ -21,53 +19,62 @@ function operate(a, op, b) {
 }
 
 function wipe() {
-  lOp = null;
-  rOp = null;
-  operation = null;
-  inputField.textContent = "";
+  lOp = rOp = op = inputField.textContent = "";
+  returnedResult = false;
 }
 
 function getResult() {
-  if (lOp && operation) {
-    rOp = inputField.textContent.slice(
-      inputField.textContent.indexOf(operation) + 1,
-    );
-    if (rOp === "") inputField.textContent = "Syntax ERROR";
-    else {
-      rOp = Number(rOp);
-      inputField.textContent = operate(lOp, operation, rOp);
-      operation = rOp = lOp = null;
-    }
+  lOp = operate(lOp, op, rOp);
+  inputField.textContent = lOp;
+  op = rOp = "";
+  returnedResult = true;
+}
+
+function addNumber() {
+  if (returnedResult) wipe();
+
+  if (op) {
+    rOp += this.textContent;
+    inputField.textContent += this.textContent;
+  } else {
+    lOp += this.textContent;
+    inputField.textContent += this.textContent;
   }
 }
 
 function addOperator() {
-  if (lOp === null && !operation) {
-    lOp = +inputField.textContent;
-    operation = this.textContent;
-    inputField.textContent += operation;
+  if (this.textContent === "-" && lOp === "") {
+    lOp = "-";
+    inputField.textContent += lOp;
+  }
+  if (this.textContent === "-" && (op === "/" || op === "x")) {
+    rOp = " -";
+    inputField.textContent += rOp;
+  }
+
+  if (rOp !== " -" && rOp !== "") getResult();
+
+  if (lOp !== "-" && lOp !== "" && !op) {
+    returnedResult = false;
+    op = this.textContent;
+    inputField.textContent += op;
   }
 }
 
-const buttons = document.querySelectorAll(".calcBtns button");
+const numBtns = document.querySelectorAll(".numBtn");
+const opBtns = document.querySelectorAll(".opBtn");
+const clrBtn = document.querySelector(".clrBtn");
+const resBtn = document.querySelector(".resBtn");
 const inputField = document.querySelector(".calcInput");
-let lOp = null;
-let rOp = null;
-let operation = null;
+let lOp, rOp, op;
+let returnedResult = false;
+wipe();
 
-/* Add event listeners for each calculator button. */
-buttons.forEach((btn) => {
-  // Add event listeners for number buttons
-  if (!isNaN(btn.textContent)) {
-    btn.addEventListener("click", () => {
-      inputField.textContent += btn.textContent;
-    });
-  }
-  // Add event listener for C button
-  else if (btn.className == "btnClear") btn.addEventListener("click", wipe);
-  // Add event listener for = button
-  else if (btn.className == "btnResult")
-    btn.addEventListener("click", getResult);
-  // Add event listener for operation buttons
-  else btn.addEventListener("click", addOperator);
+clrBtn.addEventListener("click", wipe);
+resBtn.addEventListener("click", getResult);
+numBtns.forEach((btn) => {
+  btn.addEventListener("click", addNumber);
+});
+opBtns.forEach((btn) => {
+  btn.addEventListener("click", addOperator);
 });
