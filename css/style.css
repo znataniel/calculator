@@ -1,3 +1,11 @@
+:root {
+  --calc-color: #363334;
+  --numBtn-color: #161314;
+  --opBtn-color: #4b3224;
+  --resBtn-color: #fba146;
+  --clrBtn-color: #363634;
+}
+
 body {
   height: 100vh;
   display: flex;
@@ -21,7 +29,8 @@ body {
   border-bottom-left-radius: 36px;
   border-bottom-right-radius: 36px;
   padding: 64px;
-  background-color: black;
+  background-color: var(--calc-color);
+  border: 5px outset black;
 }
 
 .brandTitle {
@@ -33,6 +42,7 @@ body {
   height: 10%;
   padding: 2px;
   background-color: darkseagreen;
+  border-radius: 10px;
 }
 
 .calcInput {
@@ -69,12 +79,29 @@ body {
 }
 
 .calcBtns > div > button {
-  border: 0;
   width: 3em;
   height: 3em;
   aspect-ratio: 1/1;
   border-radius: 50%;
 
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 700;
+  color: white;
+}
+
+.numBtn {
+  background-color: var(--numBtn-color);
+  border: 3px outset black;
+}
+
+.opBtn {
+  background-color: var(--opBtn-color);
+}
+
+.resBtn {
+  background-color: var(--resBtn-color);
+}
+
+.clrBtn {
+  background-color: var(--clrBtn-color);
 }
