@@ -72,16 +72,21 @@ body {
   height: 32px;
   width: 32px;
   border-radius: 50%;
+  border-top: 3px;
+  border-left: 3px;
+  border-right: 6px;
+  border-bottom: 6px;
+  border-style: outset;
 }
 .greenDot {
   background-color: green;
-  border: 5px outset green;
   margin-left: 16px;
   margin-right: 36px;
+  border-color: green;
 }
 .redDot {
   background-color: red;
-  border: 5px outset red;
+  border-color: red;
 }
 
 .calcBtns {
