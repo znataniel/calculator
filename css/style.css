@@ -6,6 +6,15 @@
   --clrBtn-color: #363634;
 }
 
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   height: 100vh;
   display: flex;
@@ -16,13 +25,12 @@ body {
 }
 
 .calcContainer {
-  box-sizing: border-box;
-
   height: 800px;
   width: 480px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-weight: 700;
 
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -30,7 +38,7 @@ body {
   border-bottom-right-radius: 36px;
   padding: 64px;
   background-color: var(--calc-color);
-  border: 5px outset black;
+  border: 10px outset black;
 }
 
 .brandTitle {
@@ -38,11 +46,19 @@ body {
   font-size: 24px;
 }
 
+.letterU {
+  font-size: 32px;
+}
+
 .calcDisplay {
-  height: 10%;
-  padding: 2px;
+  box-sizing: content-box;
+  display: flex;
+  height: 5%;
+  padding: 8px;
   background-color: darkseagreen;
   border-radius: 10px;
+  border: 20px inset black;
+  border-bottom: 40px inset black;
 }
 
 .calcInput {
@@ -59,10 +75,13 @@ body {
 }
 .greenDot {
   background-color: green;
+  border: 5px outset green;
+  margin-left: 16px;
   margin-right: 36px;
 }
 .redDot {
   background-color: red;
+  border: 5px outset red;
 }
 
 .calcBtns {
@@ -83,15 +102,25 @@ body {
   height: 3em;
   aspect-ratio: 1/1;
   border-radius: 50%;
+  border-right: 5px outset black;
+  border-bottom: 5px outset black;
+  border-left: 3px outset black;
+  border-top: 3px outset black;
 
   font-size: 20px;
   font-weight: 700;
   color: white;
 }
 
+.calcBtns > div > button:active {
+  border-right: 3px outset black;
+  border-bottom: 3px outset black;
+  border-left: 5px outset black;
+  border-top: 5px outset black;
+}
+
 .numBtn {
   background-color: var(--numBtn-color);
-  border: 3px outset black;
 }
 
 .opBtn {
